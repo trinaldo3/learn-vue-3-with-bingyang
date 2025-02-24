@@ -1,13 +1,24 @@
 <template>
+  <h1>v-model vs v-bind</h1>
+  <h2>Message: {{ message }}</h2>
   <div>
-    <div>Hello, Vue!</div>
+    <p>v-model = v-bind + @input</p>
+    <input 
+    type="text"
+    v-bind:value="message"
+    @input="message = $event.target.value" />
   </div>
-</template>
+  <div>
+    <p>v-model</p>
+    <input type="text" v-model="message" />
+  </div>
+  </template>
 
-<script setup>
+  <script setup>
+  import { ref } from 'vue'
+
+  let message = ref('Hello!')
 
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style scoped></style>
