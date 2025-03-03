@@ -1,13 +1,38 @@
 <template>
-  <div>
-    <div>Hello, Vue!</div>
-  </div>
+  <div class="card">
+  <h1 ref="title">Hello, Template Refs!</h1>
+  <input type="text" ref="input" />
+  <br />
+  <button @click="printDomElements">Print DOM elements in colsole log </button>
+  <button @click="changeTitle">Change Title</button>
+</div>
 </template>
 
 <script setup>
+import { onMounted, ref } from 'vue';
 
+let title = ref()
+let input = ref()
+
+function printDomElements() {
+  console.log(title.value)
+  console.log(input.value)
+}
+
+function changeTitle() {
+  title.value.innerText = 'Hello World!'
+}
+
+onMounted(() => {
+  input.value.focus()
+})
 </script>
 
-<style lang="scss" scoped>
-
+<style scoped>
+.card {
+  background-color: purple;
+  color: white;
+  padding: 20px 10px;
+  margin-bottom: 10px;
+}
 </style>
