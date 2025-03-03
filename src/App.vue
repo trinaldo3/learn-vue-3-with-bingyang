@@ -1,13 +1,56 @@
 <template>
-  <div>
-    <div>Hello, Vue!</div>
+  <h1>{{ message }}</h1>
+  <div class="card">
+    <h2 ref="title">This is the App componenet.</h2>
+    <!--<h2>Number: {{ number }}</h2> -->
+    <button @click="number++">Increment Number by one</button>
   </div>
 </template>
 
 <script setup>
+import { onBeforeMount, onBeforeUnmount, onBeforeUpdate, onMounted, onUnmounted, ref } from 'vue'
 
+let message = ref('Hello, from Lifecycel Hooks!')
+
+let number = ref(1)
+let title = ref()
+
+console.log('App component is setup')
+
+onBeforeMount(() => {
+  console.log('App componenent is before mount.')
+  console.log(number.value)
+  console.log(title.value)
+})
+
+onMounted(() => {
+  console.log('App componenet is mounted')
+  console.log(title.value)
+})
+
+onBeforeUpdate(() => {
+  console.log('App componnent is before update.')
+})
+
+onUpdate(() => {
+  console.log('App componnent is updated.')
+})
+
+onBeforeUnmount(() => {
+  console.log('App componnent is before unmount.')
+})
+
+onUnmounted(() => {
+  console.log('App componnent is unmointed.')
+})
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
+.card {
+  background-color: purple;
+  color: white;
+  padding: 20px 10px;
+  margin-bottom: 10px;
+}
 
 </style>
